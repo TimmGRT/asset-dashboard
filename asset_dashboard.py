@@ -48,12 +48,12 @@ def data_downloader(ticker, i, T, years):
         df = yf.download(ticker, i, T, auto_adjust=True)
     
     except Exception as e:
-        st.warning(f"Failed to download {ticker}, check the the ticker help expander for more infos")
+        st.warning(f":warning: Failed to download {ticker}, check the ticker help expander for more infos :warning:")
         st.stop()
         return None
     
     if df.empty or len(df)<10 :
-        st.warning(f"No data available for {ticker}, check the the ticker help expander for more infos")
+        st.warning(f":warning: No data available for {ticker}, check the the ticker help expander for more infos :warning:")
         st.stop()
         return None
     
@@ -740,11 +740,11 @@ with col1:
 
 with col2:
     st.subheader("Money Management and position forecasting")
-    st.write("INCOMING")
+    st.write("COMING SOON")
 
 with col3:
-    st.subheader("Analysis Scoring©")
-    st.write("INCOMING")
+    st.subheader("Analysis Scoring")
+    st.write("COMING SOON")
 
 
 # download to csv and excel 
