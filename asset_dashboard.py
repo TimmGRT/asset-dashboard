@@ -19,7 +19,7 @@ st.title(':bar_chart: Asset Analysis Dashboard')
 
 st.sidebar.header(":chart: Choose your ticker:")
 years = st.sidebar.selectbox("Since how many years ?:", [a for a in range(1, 20, 1)])
-ticker = st.sidebar.text_input("Choose a stock ticker:", help = "Enter the asset ticker").upper()
+ticker = st.sidebar.text_input("Choose an asset ticker:", help = "Enter the asset ticker").upper()
 with st.sidebar.expander("Tickers format in yfinance"):
     st.info("""
     📈 Stocks / ETFs : `AAPL`, `BMW.DE`, `AIR.PA` 
@@ -361,12 +361,17 @@ with cl1:
         """)
 
 with cl2: 
-
     st.subheader(f":triangular_flag_on_post: Options Market on {ticker}")
     st.subheader("options caracteristics")
-    st.write(f"**Call volume** with expiration today : {'No data available'if daily_returns_market is None or daily_returns_market.empty else int(data_options['Call'].iloc[-1])}, **Proportion** = {'no datas available' if daily_returns_market is None or daily_returns_market.empty else (int(data_options['Call'].iloc[-1])/ vol_calls).round(3)}")
-    st.write(f"**Put volume** with expiration today : {'No data available'if daily_returns_market is None or daily_returns_market.empty else int(data_options['Put'].iloc[-1])}, **Proportion** = {'no datas available' if daily_returns_market is None or daily_returns_market.empty else (int(data_options['Put'].iloc[-1])/ vol_puts).round(3)}")
-    st.write(f"**Put Call Ratio** : {PCR.round(3) if PCR else 'no datas available'}")
+
+    st.markdown(f"""
+    **Call volume** with expiration today : {'No data available' if daily_returns_market is None or daily_returns_market.empty or data_options is None or 'Call' not in data_options or vol_puts is None else int(data_options['Call'].iloc[-1])}  
+    **Proportion** = {'No data available' if daily_returns_market is None or daily_returns_market.empty or data_options is None or 'Call' not in data_options or vol_puts is None else round(int(data_options['Call'].iloc[-1]) / vol_puts, 3)}  
+    **Put volume** with expiration today : {'No data available' if daily_returns_market is None or daily_returns_market.empty or data_options is None or 'Put' not in data_options or vol_puts is None else int(data_options['Put'].iloc[-1])}  
+    **Proportion** = {'No data available' if daily_returns_market is None or daily_returns_market.empty or data_options is None or 'Put' not in data_options or vol_puts is None else round(int(data_options['Put'].iloc[-1]) / vol_puts, 3)}""")
+    st.write( f"**Put Call Ratio** : "
+        f"{'No data available' if PCR is None else round(PCR, 3)}")
+
     with st.expander("options positions bar chart : Vol = f(expiration)"):
         if data_options is None or data_options.empty:
             st.write('No datas available')
