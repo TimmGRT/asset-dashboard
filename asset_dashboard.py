@@ -487,7 +487,7 @@ with col1: # Le graph du vol profile a été réalisé par chatgpt.
     
 
 with col2:
-    st.subheader(f" :file_folder: Daily volumes and EMA20 of volumes of {ticker}")
+    st.subheader(f" :file_folder: Daily volumes and 20-day EMA of {ticker} volumes")
     fig_vol = go.Figure([
         go.Scatter(x = data['Date'],
                 y = data["Volume"],
