@@ -362,7 +362,7 @@ with cl1:
 
 with cl2: 
     st.subheader(f":triangular_flag_on_post: Options Market on {ticker}")
-    st.subheader("options caracteristics")
+    st.write(f"**options caracteristics**")
 
     st.markdown(f"""
     **Call volume** with expiration today : {'No data available' if daily_returns_market is None or daily_returns_market.empty or data_options is None or 'Call' not in data_options or vol_puts is None else int(data_options['Call'].iloc[-1])}  
