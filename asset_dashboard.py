@@ -51,6 +51,9 @@ def data_downloader(ticker, i, T, years):
         st.warning(f":warning: Failed to download {ticker}, check the ticker help expander for more infos :warning:")
         st.stop()
         return None
+
+    except yf.YFRateLimitError:
+        st.error("⚠️ Rate limit reached: too many users are generating requests. Please wait a few minutes before retrying.")
     
     if df.empty or len(df)<10 :
         st.warning(f":warning: No data available for {ticker}, check the the ticker help expander for more infos :warning:")
