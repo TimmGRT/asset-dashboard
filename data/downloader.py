@@ -7,8 +7,8 @@ from datetime import date, timedelta
 def data_downloader(ticker, i, T, years):
     df = pd.DataFrame()
     try:
+        start = T - timedelta(days=years * 365)
         df = yf.download(ticker, i, T, auto_adjust=True)
-        df = df['returns'].dropna()
     
     except Exception as e:
         st.warning(f":warning: Failed to download {ticker}, check the ticker help expander for more infos :warning:")
@@ -27,4 +27,4 @@ def data_downloader(ticker, i, T, years):
     data["Date"] = pd.to_datetime(data["Date"], errors = "coerce")
     data['returns'] = data["Close"].pct_change()
 
-    return data 
+    return data
