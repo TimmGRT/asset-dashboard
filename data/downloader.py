@@ -28,3 +28,15 @@ def data_downloader(ticker, i, T, years):
     data['returns'] = data["Close"].pct_change()
 
     return data
+
+@st.cache_data
+def data_stock_universe_download(assets, i, T, years):
+    data_universe = pd.DataFrame()
+
+    for asset in assets:
+
+        data = data_downloader(asset, i, T, years )
+
+        data_universe[asset] = data["returns"]
+
+    return data_universe.dropna()

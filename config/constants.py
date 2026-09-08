@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 etf_sectoriel = {"Energy": "XLE",
     "Basic Materials": "XLB",
     "Industrials": "XLI",
@@ -83,3 +85,5 @@ etf_national = {
     "Russia": "RSX",
     "Turkey": "TUR"
 }
+
+default_asset = "AAPL"

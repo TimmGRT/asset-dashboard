@@ -19,6 +19,8 @@ from vizualisation.charts import (
     vix_chart,
     options_bar_chart,
 )
+from config.constants import default_asset
+ticker = default_asset
 
 # config init de la st page 
 st.set_page_config(page_title="Asset Analysis Dashboard", page_icon=":bar_chart:", layout="wide")
