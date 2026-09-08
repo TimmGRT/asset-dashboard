@@ -6,7 +6,6 @@ from datetime import date, timedelta
 import plotly.express as px
 import plotly.graph_objects as go
 import matplotlib.ticker as tick
-import mplfinance as mpf
 import streamlit as st
 import os 
 import io
